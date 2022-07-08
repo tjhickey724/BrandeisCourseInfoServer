@@ -20,7 +20,7 @@ function cleanCourses(){
     let n = c.coursenum;
     let m = digitsOf(c.coursenum);
     let a = n.slice(m.length);
-    c.coursenum=parseInt(m);
+    c.coursenumeral=parseInt(m);
     c.suffix=a;
   }
 }
@@ -79,7 +79,7 @@ app.get('/coursesBySubject/:subject',
   (req,res,next) => {
     try{
       let courses = coursesBySubject[req.params.subject];
-      courses = courses.sort((x,y) => (x.coursenum-y.coursenum));
+      courses = courses.sort((x,y) => (x.coursenumeral-y.coursenumeral));
       res.json(courses);
     } catch(e){
       next(e);
