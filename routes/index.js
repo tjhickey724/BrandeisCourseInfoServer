@@ -12,8 +12,9 @@ function digitsOf(s){
       break;
     } 
   }
-  return s.slice(0,i);
+  return s.slice(0,i)
 }
+
 function cleanCourses(){
   for (c of courses){
     let n = c.coursenum;
@@ -77,7 +78,9 @@ app.get('/courses',
 app.get('/coursesBySubject/:subject',
   (req,res,next) => {
     try{
-      res.json(coursesBySubject[req.params.subject]);
+      let courses = coursesBySubject[req.params.subject];
+      courses = courses.sort((x,y) => (x.coursenum-y.coursenum));
+      res.json(courses);
     } catch(e){
       next(e);
     }
